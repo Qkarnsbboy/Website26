@@ -2,9 +2,6 @@
   "name": "website26",
   "type": "module",
   "version": "0.0.1",
-  "engines": {
-    "node": ">=22.12.0"
-  },
   "scripts": {
     "dev": "astro dev",
     "build": "astro build",
@@ -12,6 +9,8 @@
     "astro": "astro"
   },
   "dependencies": {
-    "astro": "^6.1.1"
+    "astro": "^4.16.18",
+    "@astrojs/tailwind": "^5.1.0",
+    "tailwindcss": "^3.4.17"
   }
 }

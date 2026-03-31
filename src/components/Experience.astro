@@ -1,0 +1,76 @@
+---
+// Experience.astro
+
+const experiences = [
+  {
+    company: 'Strategy&, PwC',
+    role: 'Associate, Technology Strategy (Deals)',
+    period: 'October 2025 – Present',
+    location: 'New York, NY',
+    description: [
+      'Supported 10+ technology due diligence and value creation projects for private equity firms, analyzing product positioning, revenue drivers, and technology infrastructure to assess investment risk.',
+      'Built financial sensitivity analyses to evaluate margin expansion opportunities and downside exposure.',
+      'Identified $10M+ in operational bottlenecks across multiple diligence processes in the technology sector.',
+    ],
+  },
+  {
+    company: 'Microsoft',
+    role: 'Software Engineer Intern',
+    period: 'May 2024 – August 2024',
+    location: 'Redmond, WA',
+    description: [
+      'Led development of a performance-critical feature within Microsoft Teams supporting 1M+ daily calls, reducing transfer time by 20% and improving call success rates by 15%.',
+      'Built automated test framework (50+ tests) to stress-test edge cases and improve system stability under peak usage.',
+      'Partnered with product and engineering leads to prioritize feature rollout based on user impact and operational risk.',
+    ],
+  },
+  {
+    company: 'Microsoft',
+    role: 'Explore Intern (New Technologists)',
+    period: 'May 2023 – August 2023',
+    location: 'Redmond, WA',
+    description: [
+      'Selected as 1 of 50 out of 2,700+ applicants to join the innovation academy and explore the full product lifecycle.',
+      'Built a full-stack personal styling web application using ReactJS, JavaScript, and Bootstrap.',
+      'Implemented a backend decision engine in Express.js integrating OpenAI APIs, increasing user engagement by 50%.',
+    ],
+  },
+];
+---
+
+<section id="experience" class="py-24">
+  <div class="max-w-5xl mx-auto px-6">
+    <h2 class="text-sm font-semibold uppercase tracking-widest text-accent mb-3">Experience</h2>
+    <h3 class="text-3xl font-bold text-white mb-12">Where I've worked</h3>
+
+    <div class="relative border-l-2 border-slate-700 ml-4 space-y-12">
+      {experiences.map((exp) => (
+        <div class="relative pl-10">
+          <!-- Timeline dot -->
+          <div class="absolute -left-[9px] top-1.5 w-4 h-4 rounded-full bg-accent border-2 border-slate-900 ring-2 ring-accent/30"></div>
+
+          <div class="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-1 mb-2">
+            <div>
+              <span class="text-lg font-semibold text-white">{exp.role}</span>
+              <span class="text-gray-500 mx-2">·</span>
+              <span class="text-gray-300 font-medium">{exp.company}</span>
+            </div>
+            <div class="text-right">
+              <div class="text-sm text-gray-500 font-mono">{exp.period}</div>
+              <div class="text-xs text-gray-600">{exp.location}</div>
+            </div>
+          </div>
+
+          <ul class="space-y-1.5 mt-3">
+            {exp.description.map((point) => (
+              <li class="flex gap-2 text-gray-400 leading-relaxed">
+                <span class="mt-2 w-1.5 h-1.5 rounded-full bg-slate-600 flex-shrink-0"></span>
+                <span>{point}</span>
+              </li>
+            ))}
+          </ul>
+        </div>
+      ))}
+    </div>
+  </div>
+</section>
