@@ -1,0 +1,101 @@
+---
+// Poker.astro
+
+const stats = [
+  { label: 'Lifetime Profit', value: '$35,000+' },
+  { label: '$/hr', value: '$75/hr' },
+  { label: 'ROI', value: '40%' },
+  { label: 'Sharpe Ratio', value: '0.38' },
+  { label: 'BB/100', value: '72' },
+];
+
+const skills = [
+  'Risk Management',
+  'Expected Value',
+  'Probabilistic Thinking',
+  'Decision-Making Under Uncertainty',
+  'Emotional Discipline',
+  'Bankroll Management',
+  'Pattern Recognition',
+  'Game Selection',
+];
+---
+
+<section id="poker" class="py-24">
+  <div class="max-w-5xl mx-auto px-6">
+    <h2 class="text-sm font-semibold uppercase tracking-widest text-accent mb-3">
+      Off the Clock
+    </h2>
+    <h3 class="text-3xl font-bold text-white mb-8">Poker</h3>
+
+    <!-- Text left, photo right -->
+    <div class="flex flex-col md:flex-row gap-12 mb-12">
+      <div class="flex-1">
+        <p class="text-gray-400 text-lg leading-relaxed">
+          I approach cash games the same way I approach markets — find an edge,
+          size accordingly, and manage risk. Poker sharpens the skills that matter
+          most in finance: making high-quality decisions with incomplete information,
+          staying disciplined when variance hits, and always thinking in expected value.
+        </p>
+        <p class="text-gray-400 text-lg leading-relaxed mt-4">
+          I mainly play 2/5 No-Limit Hold'em at casinos around NYC, and
+          occasionally take shots at tournament series like the World Series of Poker (WSOP) and World Poker Tour (WPT).
+        </p>
+      </div>
+
+      <!-- Photo + caption -->
+      <div class="flex-shrink-0">
+        <div class="relative w-96 rounded-xl bg-slate-800 border border-slate-700 overflow-hidden">
+          <img src="/assets/PokerPic1.jpeg" alt="Poker" class="w-full h-full object-cover" />
+          <!-- Location badge -->
+          <div class="absolute bottom-3 right-3 flex items-center gap-1.5 bg-slate-900/80 backdrop-blur-sm text-accent text-xs font-semibold uppercase tracking-widest px-3 py-1.5 rounded-full">
+            <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0Z"/>
+              <circle cx="12" cy="10" r="3"/>
+            </svg>
+            Las Vegas, NV
+          </div>
+        </div>
+        <p class="text-gray-500 text-sm italic mt-3">WSOP Event #67: $300 Gladiators of Poker - Day 1</p>
+        <a
+          href="https://pokerdb.thehendonmob.com/player.php?a=r&n=1270221"
+          target="_blank"
+          rel="noopener noreferrer"
+          class="text-sm text-accent hover:text-accent/80 transition-colors flex items-center gap-1 mt-1"
+        >
+          Track my live tourney winnings
+          <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/>
+            <polyline points="15 3 21 3 21 9"/>
+            <line x1="10" y1="14" x2="21" y2="3"/>
+          </svg>
+        </a>
+      </div>
+    </div>
+
+    <!-- Stats -->
+    <h4 class="text-xs font-semibold uppercase tracking-widest text-gray-400 mb-4">
+      Stats
+    </h4>
+    <div class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-5 gap-4 mb-12">
+      {stats.map((stat) => (
+        <div class="bg-slate-800 border border-slate-700 rounded-xl p-5 text-center hover:border-accent/40 transition-all">
+          <p class="text-2xl font-bold text-accent mb-1">{stat.value}</p>
+          <p class="text-xs font-semibold uppercase tracking-widest text-gray-400">{stat.label}</p>
+        </div>
+      ))}
+    </div>
+
+    <!-- Transferable skills -->
+    <h4 class="text-xs font-semibold uppercase tracking-widest text-gray-400 mb-4">
+      Transferable Skills
+    </h4>
+    <div class="flex flex-wrap gap-2">
+      {skills.map((skill) => (
+        <span class="text-sm bg-slate-800 text-gray-300 px-3 py-1.5 rounded-full font-medium hover:bg-accent/20 hover:text-accent transition-colors">
+          {skill}
+        </span>
+      ))}
+    </div>
+  </div>
+</section>
