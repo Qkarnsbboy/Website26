@@ -7,26 +7,27 @@ const skillGroups = [
     skills: ['C++', 'C#', 'Python', 'JavaScript', 'Java', 'SQL', 'HTML/CSS'],
   },
   {
-    category: 'Frameworks & Tools',
-    skills: ['ReactJS', 'Express.js', 'Git', 'Azure', 'Pandas', 'NumPy', 'Flask', 'SpringBoot', 'Bootstrap'],
+    category: 'Frameworks & Platforms',
+    skills: ['ReactJS', 'Express.js', 'Node.js', 'Flask', 'SpringBoot', 'Azure', 'Git', 'Pandas', 'NumPy'],
   },
   {
-    category: 'Finance',
+    category: 'Customer-Facing',
     skills: [
-      'Financial Derivatives',
-      'Sensitivity Analysis',
-      'Technology Due Diligence',
-      'Advanced Finance',
-      'Applied Statistics',
+      'Technical Discovery',
+      'Requirements Gathering',
+      'Stakeholder Communication',
+      'Executive Presentations',
+      'Technical Due Diligence',
+      'Solution Design',
     ],
   },
   {
-    category: 'Other',
+    category: 'Foundations',
     skills: [
       'Data Structures & Algorithms',
       'Systems Design',
       'Product Strategy',
-      'Private Equity Diligence',
+      'Applied Statistics',
     ],
   },
 ];
@@ -34,8 +35,7 @@ const skillGroups = [
 
 <section id="skills" class="py-24 bg-slate-800">
   <div class="max-w-5xl mx-auto px-6">
-    <h2 class="text-sm font-semibold uppercase tracking-widest text-accent mb-3">Skills</h2>
-    <h3 class="text-3xl font-bold text-white mb-12">Technical &amp; domain knowledge</h3>
+    <h2 class="text-2xl font-semibold text-accent mb-6">Skills</h2>
 
     <div class="grid grid-cols-1 sm:grid-cols-2 gap-10">
       {skillGroups.map((group) => (
