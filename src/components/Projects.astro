@@ -3,23 +3,26 @@
 
 const projects = [
   {
-    title: 'Options Pricing Model',
-    description: 'In progress — implementing Black-Scholes and binomial tree pricing models in Python with an interactive payoff visualizer.',
-    tags: ['Python', 'Finance', 'Coming Soon'],
+    title: 'Poker Hand Analyzer',
+    description: 'Reviews a poker hand and shows where your play differed from the mathematically optimal line, and when going against it would have actually made you more money.',
+    image: '/assets/Poker_Analyzer.jpg',
+    tags: ['Python', 'Game Theory', 'Poker'],
     status: 'in-progress',
     link: null,
   },
   {
-    title: 'Algorithmic Trading Backtest',
-    description: 'Planned — backtesting a momentum-based equity strategy using historical market data. Will include performance metrics (Sharpe, max drawdown).',
-    tags: ['Python', 'Quantitative', 'Planned'],
+    title: 'Gamertag Lookup',
+    description: 'Look up a player once and get their stats from every game they play, pulled together from each platform\'s separate database.',
+    image: '/assets/GamerTag_Lookup.jpeg',
+    tags: ['Python', 'REST APIs', 'Data Aggregation'],
     status: 'planned',
     link: null,
   },
   {
-    title: 'Market Data Dashboard',
-    description: 'Planned — a real-time dashboard pulling live price data and displaying technical indicators. Leveraging C++ for data processing.',
-    tags: ['C++', 'Python', 'Planned'],
+    title: 'Steam Item Options Pricer',
+    description: 'Takes historical prices for Counter-Strike skins and builds options chains on top of them, treating the skin market like a tradable asset.',
+    image: '/assets/SteamSkin.webp',
+    tags: ['Python', 'Derivatives', 'Time Series'],
     status: 'planned',
     link: null,
   },
@@ -28,37 +31,46 @@ const projects = [
 
 <section id="projects" class="py-24 bg-slate-800">
   <div class="max-w-5xl mx-auto px-6">
-    <h2 class="text-sm font-semibold uppercase tracking-widest text-accent mb-3">Projects</h2>
-    <h3 class="text-3xl font-bold text-white mb-4">What I'm building</h3>
-    <p class="text-gray-400 mb-12 max-w-xl">
-      Currently building out finance-focused projects. Check back soon — links will be added as
-      work is completed and published to GitHub.
+    <h2 class="text-2xl font-semibold text-accent mb-6">Projects</h2>
+    <p class="text-gray-400 mb-12">
+      In my free time, I like to build personal projects that combine my personal interests with
+      the technical skills I've developed. Here are a few with Github links attached: 
     </p>
 
-    <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+    <div class="flex flex-col gap-8">
       {projects.map((project) => (
-        <div class="bg-slate-900 rounded-xl border border-slate-700 p-6 flex flex-col gap-4 hover:shadow-md hover:border-accent/40 transition-all">
-          <!-- Status badge -->
-          <div class="flex items-center justify-between">
-            <span class={`text-xs font-medium px-2.5 py-1 rounded-full ${
+        <div class="bg-slate-900 rounded-xl border border-slate-700 overflow-hidden flex flex-col md:flex-row hover:border-accent/40 transition-all">
+          <!-- Image -->
+          <div class="md:w-[44%] flex-shrink-0 bg-slate-950/60 flex items-center justify-center p-4">
+            <img
+              src={project.image}
+              alt={`${project.title} screenshot`}
+              loading="lazy"
+              class="w-full max-h-72 object-contain rounded-lg"
+            />
+          </div>
+
+          <!-- Content -->
+          <div class="flex-1 p-8 flex flex-col gap-4">
+            <span class={`self-start text-xs font-medium px-2.5 py-1 rounded-full ${
               project.status === 'in-progress'
                 ? 'bg-yellow-900/30 text-yellow-400'
                 : 'bg-slate-700 text-gray-400'
             }`}>
               {project.status === 'in-progress' ? 'In Progress' : 'Planned'}
             </span>
-          </div>
 
-          <div>
-            <h4 class="text-base font-semibold text-white mb-2">{project.title}</h4>
-            <p class="text-sm text-gray-400 leading-relaxed">{project.description}</p>
-          </div>
+            <div>
+              <h4 class="text-xl font-semibold text-white mb-2">{project.title}</h4>
+              <p class="text-gray-400 leading-relaxed">{project.description}</p>
+            </div>
 
-          <!-- Tags -->
-          <div class="flex flex-wrap gap-2 mt-auto">
-            {project.tags.map((tag) => (
-              <span class="text-xs bg-slate-700 text-gray-300 px-2 py-0.5 rounded">{tag}</span>
-            ))}
+            <!-- Tags -->
+            <div class="flex flex-wrap gap-2 mt-auto pt-2">
+              {project.tags.map((tag) => (
+                <span class="text-xs bg-slate-700 text-gray-300 px-2 py-0.5 rounded">{tag}</span>
+              ))}
+            </div>
           </div>
         </div>
       ))}
