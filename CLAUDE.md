@@ -19,30 +19,31 @@ No linter, formatter, or test runner is configured.
 
 ## Architecture
 
-Single-page personal portfolio. All content lives on `src/pages/index.astro`, which composes section components:
+Multi-page personal portfolio. Every page uses `src/layouts/BaseLayout.astro`, which shows the left menu (`src/components/Sidebar.astro`) and the page content on the right.
 
 ```
-BaseLayout (src/layouts/BaseLayout.astro)
-  └── index.astro
-        ├── Navbar
-        ├── Hero
-        ├── About
-        ├── Experience
-        ├── Projects
-        ├── Skills
-        └── Footer
+BaseLayout (left Sidebar + right content)
+  ├── /                     src/pages/index.astro (bio + project rows)
+  ├── /projects/<slug>      src/pages/projects/[slug].astro
+  ├── /experience/<slug>    src/pages/experience/[slug].astro
+  ├── /poker                src/pages/poker.astro
+  └── /about                src/pages/about.astro (LinkedIn, GitHub, resume links)
 ```
 
-Experience, Projects, and Skills components define their data as inline JS arrays and render with `.map()`. To update content, edit the data arrays at the top of each component file.
+Content lives in data files:
+- `src/data/projects.ts` — every project (menu, home rows, project pages).
+- `src/data/experience.ts` — every company and its roles.
+Add or edit an entry there; the menu and pages update by themselves.
 
 ## Tailwind Theme
 
-Custom tokens in `tailwind.config.mjs`:
-- **accent**: `#FFCC00` (gold)
-- **surface**: `#1e293b` (card backgrounds)
-- **font**: Inter (loaded via Google Fonts in BaseLayout)
+"Ledger × Charcoal" look. Custom tokens in `tailwind.config.mjs`:
+- **charcoal** `#141716` background, **ink** `#ECEAE3` text, **muted** `#A3ABA6` secondary text
+- **rule** `#2E3532` / **rule-strong** `#4A524E` lines
+- **felt** `#5FBF8A` poker-green accent — use sparingly (`//` marks, live status, hover)
+- **font**: JetBrains Mono everywhere (loaded via Google Fonts in BaseLayout)
 
-The site uses a dark theme (slate-900/slate-800 backgrounds) with the gold accent throughout.
+No cards, rounded corners, badges or icons.
 
 ## Static Assets
 

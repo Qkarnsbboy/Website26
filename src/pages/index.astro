@@ -1,26 +1,50 @@
 ---
+// index.astro
+// Home page: a short bio, then every project as a ledger row.
+// Live and in-progress projects show a large screenshot.
+// Planned projects are text rows only.
 import BaseLayout from '../layouts/BaseLayout.astro';
-import Navbar from '../components/Navbar.astro';
-import Hero from '../components/Hero.astro';
-import About from '../components/About.astro';
-import Experience from '../components/Experience.astro';
-import Projects from '../components/Projects.astro';
-import Poker from '../components/Poker.astro';
-import Skills from '../components/Skills.astro';
-import Contact from '../components/Contact.astro';
-import Footer from '../components/Footer.astro';
+import ProjectRow from '../components/ProjectRow.astro';
+import { projects } from '../data/projects';
+
+// Split the projects into the ones with images and the planned ones.
+// Keep each project's number from its place in the full list.
+const featured = [];
+const planned = [];
+for (let i = 0; i < projects.length; i++) {
+  const entry = { project: projects[i], number: String(i + 1).padStart(2, '0') };
+  if (projects[i].status === 'planned') {
+    planned.push(entry);
+  } else {
+    featured.push(entry);
+  }
+}
 ---
 
 <BaseLayout>
-  <Navbar />
-  <main>
-    <Hero />
-    <About />
-    <Experience />
-    <Projects />
-    <Poker />
-    <Skills />
-    <Contact />
-  </main>
-  <Footer />
+  <!-- Short bio: one fact per line -->
+  <div class="flex flex-col text-lg md:text-xl leading-normal max-w-[720px]">
+    <p>Currently tech strategy at <b>Strategy&amp;</b>.</p>
+    <p>Previously software engineering at <b>Microsoft</b>.</p>
+    <p class="text-muted">Studied CS + Business at USC.</p>
+    <p class="text-muted">Avid poker player and gamer.</p>
+    <p class="text-muted">Based in New York.</p>
+  </div>
+
+  <div class="border-t border-rule-strong"></div>
+
+  <span class="text-muted -mb-6"><span class="text-felt">//</span> projects</span>
+
+  {featured.map((entry) => (
+    <ProjectRow project={entry.project} number={entry.number} showImage />
+  ))}
+
+  <!-- Planned projects: a compact list with thin lines -->
+  <div class="flex flex-col border-t border-rule-strong">
+    {planned.map((entry) => (
+      <div class="py-3 border-b border-rule">
+        <ProjectRow project={entry.project} number={entry.number} />
+      </div>
+    ))}
+  </div>
 </BaseLayout>

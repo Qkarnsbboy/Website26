@@ -1,0 +1,60 @@
+---
+// about.astro
+// The about page: short story and the outside links
+// (LinkedIn, GitHub, resume).
+import BaseLayout from '../layouts/BaseLayout.astro';
+import { projects } from '../data/projects';
+import { companies } from '../data/experience';
+
+// About is the last menu entry, right after Poker.
+const number = String(projects.length + companies.length + 2).padStart(2, '0');
+
+// The outside links. Shown only on this page.
+const links = [
+  { label: 'linkedin', href: 'https://linkedin.com/in/quincykarns' },
+  { label: 'github', href: 'https://github.com/qkarnsbboy' },
+  { label: 'resume.pdf', href: '/resume.pdf' },
+];
+---
+
+<BaseLayout title="About — Quincy Karns">
+  <div class="flex flex-col gap-3">
+    <span class="text-muted">{number} <span class="text-felt">//</span> about</span>
+    <h1 class="text-2xl md:text-3xl font-bold">About</h1>
+  </div>
+
+  <div class="border-t border-rule-strong"></div>
+
+  <!-- Story -->
+  <div class="flex flex-col gap-4 text-base leading-relaxed max-w-[640px]">
+      <p>
+        I graduated from USC's Viterbi School of Engineering with a B.S. in Computer Science
+        and Business Administration. I chose a dual degree because I like both building things
+        and understanding how they are used in the business world.
+      </p>
+      <p>
+        At Microsoft, I interned as a software engineer on the Teams platform, working on
+        performance-critical infrastructure that serves 1M+ calls a day. That is where I learned
+        what production-ready code really demands.
+      </p>
+      <p>
+        Now I am a technology strategy consultant at Strategy&amp;, advising private equity firms on
+        technical due diligence and value creation. Each engagement is a chance to study a company's
+        technology and find where it can improve the business.
+      </p>
+      <p>
+        In my free time I play poker, soccer, and video games, and I build personal projects that
+        combine technology and business.
+      </p>
+  </div>
+
+  <!-- Outside links -->
+  <section class="flex flex-col gap-1">
+    <span class="text-muted mb-2"><span class="text-felt">//</span> links</span>
+    {links.map((link) => (
+      <a href={link.href} target="_blank" rel="noopener noreferrer" class="hover:text-felt hover:underline">
+        {link.label} ↗
+      </a>
+    ))}
+  </section>
+</BaseLayout>

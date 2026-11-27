@@ -1,31 +1,42 @@
 ---
+// BaseLayout.astro
+// Every page uses this layout: the left menu, and the page content on the right.
+// On a phone, the menu sits on top of the content.
+import Sidebar from '../components/Sidebar.astro';
+
 export interface Props {
   title?: string;
   description?: string;
 }
 
 const {
-  title = 'Quincy Karns | Portfolio',
-  description = 'Engineer and technology consultant, previously Microsoft, now Strategy&. I build technical systems and translate them for the people who buy them.',
+  title = 'Quincy Karns',
+  description = 'Tech strategy consultant at Strategy&, PwC. Previously software engineer at Microsoft. Based in New York.',
 } = Astro.props;
 ---
 
 <!doctype html>
-<html lang="en" class="scroll-smooth">
+<html lang="en">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta name="description" content={description} />
     <meta name="generator" content={Astro.generator} />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
     <title>{title}</title>
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
-      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap"
+      href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;700&display=swap"
       rel="stylesheet"
     />
   </head>
-  <body class="bg-slate-900 text-gray-100 font-sans antialiased">
-    <slot />
+  <body class="bg-charcoal text-ink font-mono text-sm leading-relaxed antialiased">
+    <div class="max-w-[1280px] mx-auto px-6 py-10 md:px-14 md:py-14 flex flex-col md:flex-row gap-10 md:gap-[72px]">
+      <Sidebar />
+      <main class="flex-1 min-w-0 flex flex-col gap-14">
+        <slot />
+      </main>
+    </div>
   </body>
 </html>

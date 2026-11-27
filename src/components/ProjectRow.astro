@@ -1,0 +1,51 @@
+---
+// ProjectRow.astro
+// One ledger row for a project: number, name, status.
+// With showImage, the project screenshot appears below the row.
+import type { Project } from '../data/projects';
+import { statusLabels } from '../data/projects';
+
+interface Props {
+  project: Project;
+  number: string;
+  showImage?: boolean;
+}
+
+const { project, number, showImage = false } = Astro.props;
+const pageHref = `/projects/${project.slug}`;
+
+// A live project shows its status and its image border in green.
+let statusClass = 'text-muted';
+let imageBorderClass = 'border-rule hover:border-rule-strong';
+if (project.status === 'live') {
+  statusClass = 'text-felt';
+  imageBorderClass = 'border-felt';
+}
+---
+
+<section class="flex flex-col gap-4">
+  <div class="grid grid-cols-[40px_minmax(0,1fr)_auto] sm:grid-cols-[48px_minmax(0,1fr)_96px] gap-4">
+    <span class="text-muted">{number}</span>
+    <a href={pageHref} class="font-medium hover:text-felt hover:underline">{project.title}</a>
+
+    <!-- A live project's status links to its demo -->
+    {project.link ? (
+      <a href={project.link} target="_blank" rel="noopener noreferrer" class={`text-right hover:underline ${statusClass}`}>
+        [{statusLabels[project.status]} ↗]
+      </a>
+    ) : (
+      <span class={`text-right ${statusClass}`}>[{statusLabels[project.status]}]</span>
+    )}
+  </div>
+
+  {showImage && (
+    <a href={pageHref} class="block">
+      <img
+        src={project.images[0].src}
+        alt={`${project.title} screenshot`}
+        loading="lazy"
+        class={`w-full h-auto border ${imageBorderClass}`}
+      />
+    </a>
+  )}
+</section>

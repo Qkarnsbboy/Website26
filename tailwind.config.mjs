@@ -4,11 +4,15 @@ export default {
   theme: {
     extend: {
       fontFamily: {
-        sans: ['Inter', 'ui-sans-serif', 'system-ui', 'sans-serif'],
+        mono: ['"JetBrains Mono"', 'ui-monospace', 'SFMono-Regular', 'monospace'],
       },
       colors: {
-        accent: '#FFCC00', // USC gold
-        surface: '#1e293b', // card/section surface
+        charcoal: '#141716', // page background
+        ink: '#ECEAE3', // main text
+        muted: '#A3ABA6', // labels, tags, secondary text
+        rule: '#2E3532', // thin lines between rows
+        'rule-strong': '#4A524E', // main dividing lines
+        felt: '#5FBF8A', // poker-green accent, used sparingly
       },
     },
   },
