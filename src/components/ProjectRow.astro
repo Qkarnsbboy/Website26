@@ -1,29 +1,29 @@
 ---
 // ProjectRow.astro
-// One ledger row for a project: number, name, short tags, status.
+// One ledger row for a project: name, short tags, status.
 // With showImage, the project screenshot appears below the row.
 import type { Project } from '../data/projects';
 import { statusLabels } from '../data/projects';
 
 interface Props {
   project: Project;
-  number: string;
   showImage?: boolean;
 }
 
-const { project, number, showImage = false } = Astro.props;
+const { project, showImage = false } = Astro.props;
 const pageHref = `/projects/${project.slug}`;
 
-// Only a live project shows its status in green.
+// A live project shows its status and its image border in green.
 let statusClass = 'text-muted';
+let imageBorderClass = 'border-rule hover:border-rule-strong';
 if (project.status === 'live') {
   statusClass = 'text-felt';
+  imageBorderClass = 'border-felt';
 }
 ---
 
 <section class="flex flex-col gap-4">
-  <div class="grid grid-cols-[40px_minmax(0,1fr)_auto] sm:grid-cols-[48px_minmax(0,1fr)_minmax(0,1fr)_96px] gap-4">
-    <span class="text-muted">{number}</span>
+  <div class="grid grid-cols-[minmax(0,1fr)_auto] sm:grid-cols-[minmax(0,1fr)_minmax(0,1fr)_96px] gap-4">
     <a href={pageHref} class="font-medium hover:text-felt hover:underline">{project.title}</a>
     <span class="text-muted hidden sm:block">{project.summary}</span>
 
@@ -43,7 +43,7 @@ if (project.status === 'live') {
         src={project.image}
         alt={`${project.title} screenshot`}
         loading="lazy"
-        class="w-full aspect-video object-cover border border-rule hover:border-rule-strong"
+        class={`w-full aspect-video object-cover border ${imageBorderClass}`}
       />
     </a>
   )}

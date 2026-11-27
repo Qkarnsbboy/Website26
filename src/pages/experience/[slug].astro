@@ -3,18 +3,15 @@
 // One page per company. Each role at that company is a block with its bullets.
 import BaseLayout from '../../layouts/BaseLayout.astro';
 import { companies } from '../../data/experience';
-import { projects } from '../../data/projects';
 import type { Company } from '../../data/experience';
 
 // Tell Astro which company pages to build.
-// Experience numbers continue after the project numbers, like in the menu.
 export function getStaticPaths() {
   const paths = [];
-  for (let i = 0; i < companies.length; i++) {
-    const number = String(projects.length + i + 1).padStart(2, '0');
+  for (const company of companies) {
     paths.push({
-      params: { slug: companies[i].slug },
-      props: { company: companies[i], number: number },
+      params: { slug: company.slug },
+      props: { company: company },
     });
   }
   return paths;
@@ -22,15 +19,14 @@ export function getStaticPaths() {
 
 interface Props {
   company: Company;
-  number: string;
 }
 
-const { company, number } = Astro.props;
+const { company } = Astro.props;
 ---
 
 <BaseLayout title={`${company.name} — Quincy Karns`}>
   <div class="flex flex-col gap-3">
-    <span class="text-muted">{number} <span class="text-felt">//</span> experience</span>
+    <span class="text-muted"><span class="text-felt">//</span> experience</span>
     <h1 class="text-2xl md:text-3xl font-bold">{company.name}</h1>
   </div>
 

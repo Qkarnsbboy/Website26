@@ -8,15 +8,13 @@ import ProjectRow from '../components/ProjectRow.astro';
 import { projects } from '../data/projects';
 
 // Split the projects into the ones with images and the planned ones.
-// Keep each project's number from its place in the full list.
 const featured = [];
 const planned = [];
-for (let i = 0; i < projects.length; i++) {
-  const entry = { project: projects[i], number: String(i + 1).padStart(2, '0') };
-  if (projects[i].status === 'planned') {
-    planned.push(entry);
+for (const project of projects) {
+  if (project.status === 'planned') {
+    planned.push(project);
   } else {
-    featured.push(entry);
+    featured.push(project);
   }
 }
 ---
@@ -29,15 +27,15 @@ for (let i = 0; i < projects.length; i++) {
 
   <div class="border-t border-rule-strong"></div>
 
-  {featured.map((entry) => (
-    <ProjectRow project={entry.project} number={entry.number} showImage />
+  {featured.map((project) => (
+    <ProjectRow project={project} showImage />
   ))}
 
   <!-- Planned projects: a compact list with thin lines -->
   <div class="flex flex-col border-t border-rule-strong">
-    {planned.map((entry) => (
+    {planned.map((project) => (
       <div class="py-3 border-b border-rule">
-        <ProjectRow project={entry.project} number={entry.number} />
+        <ProjectRow project={project} />
       </div>
     ))}
   </div>

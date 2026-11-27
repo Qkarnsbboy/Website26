@@ -1,12 +1,7 @@
 ---
 // poker.astro
-// The poker page: story, photo, stats, skills and links.
+// The poker page: full-width photo, story, stats, skills and links.
 import BaseLayout from '../layouts/BaseLayout.astro';
-import { projects } from '../data/projects';
-import { companies } from '../data/experience';
-
-// Poker comes right after the projects and the companies in the menu.
-const number = String(projects.length + companies.length + 1).padStart(2, '0');
 
 // Lifetime results, shown as ledger rows.
 const stats = [
@@ -38,15 +33,20 @@ const links = [
 
 <BaseLayout title="Poker — Quincy Karns">
   <div class="flex flex-col gap-3">
-    <span class="text-muted">{number} <span class="text-felt">//</span> poker</span>
+    <span class="text-muted"><span class="text-felt">//</span> poker</span>
     <h1 class="text-2xl md:text-3xl font-bold">Poker</h1>
   </div>
 
   <div class="border-t border-rule-strong"></div>
 
-  <!-- Story on the left, photo on the right (stacked on a phone) -->
-  <div class="flex flex-col lg:flex-row gap-10">
-    <div class="flex-1 flex flex-col gap-4 text-base leading-relaxed max-w-[640px]">
+  <!-- Photo first, across the full width -->
+  <figure class="flex flex-col gap-2">
+    <img src="/assets/PokerPic1.jpeg" alt="Quincy at a WSOP table in Las Vegas" class="w-full object-cover border border-rule" />
+    <figcaption class="text-muted text-xs">WSOP Event #67: $300 Gladiators of Poker — Day 1 · Las Vegas, NV</figcaption>
+  </figure>
+
+  <!-- Story -->
+  <div class="flex flex-col gap-4 text-base leading-relaxed max-w-[720px]">
       <p>
         Poker is my favorite hobby. From my first time playing with my friends in their college dorm room,
         to taking on thousands of professionals at the World Series of Poker in Las Vegas, I have never lost my love for the game.
@@ -59,12 +59,6 @@ const links = [
         You can find me grinding at the local $1/$3 and $2/$5 tables at casinos and home games around NYC. Occasionally, I take shots
         at tournament series like the World Series of Poker (WSOP) and World Poker Tour (WPT).
       </p>
-    </div>
-
-    <figure class="lg:w-80 flex-shrink-0 flex flex-col gap-2">
-      <img src="/assets/PokerPic1.jpeg" alt="Quincy at a WSOP table in Las Vegas" class="w-full object-cover border border-rule" />
-      <figcaption class="text-muted text-xs">WSOP Event #67: $300 Gladiators of Poker — Day 1 · Las Vegas, NV</figcaption>
-    </figure>
   </div>
 
   <!-- Stats -->

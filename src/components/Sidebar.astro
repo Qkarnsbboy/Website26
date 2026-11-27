@@ -26,13 +26,6 @@ const otherItems: NavItem[] = [
   { label: 'About', href: '/about' },
 ];
 
-// Give every entry a running number: 01, 02, 03 ...
-const allItems = [...projectItems, ...experienceItems, ...otherItems];
-const numbers = new Map<string, string>();
-for (let i = 0; i < allItems.length; i++) {
-  numbers.set(allItems[i].href, String(i + 1).padStart(2, '0'));
-}
-
 // The page the visitor is on now, without a trailing slash.
 const currentPath = Astro.url.pathname.replace(/\/$/, '');
 
@@ -59,7 +52,7 @@ function linkClass(href: string): string {
     <span class="text-muted"><span class="text-felt">//</span> projects</span>
     {projectItems.map((item) => (
       <a href={item.href} class={linkClass(item.href)}>
-        {numbers.get(item.href)}&nbsp;&nbsp;{item.label}
+        {item.label}
       </a>
     ))}
   </div>
@@ -69,7 +62,7 @@ function linkClass(href: string): string {
     <span class="text-muted"><span class="text-felt">//</span> experience</span>
     {experienceItems.map((item) => (
       <a href={item.href} class={linkClass(item.href)}>
-        {numbers.get(item.href)}&nbsp;&nbsp;{item.label}
+        {item.label}
       </a>
     ))}
   </div>
@@ -78,7 +71,7 @@ function linkClass(href: string): string {
   <div class="flex flex-col gap-1">
     {otherItems.map((item) => (
       <a href={item.href} class={linkClass(item.href)}>
-        {numbers.get(item.href)}&nbsp;&nbsp;{item.label}
+        {item.label}
       </a>
     ))}
   </div>
