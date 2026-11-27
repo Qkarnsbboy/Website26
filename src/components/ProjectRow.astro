@@ -1,6 +1,6 @@
 ---
 // ProjectRow.astro
-// One ledger row for a project: number, name, short tags, status.
+// One ledger row for a project: number, name, status.
 // With showImage, the project screenshot appears below the row.
 import type { Project } from '../data/projects';
 import { statusLabels } from '../data/projects';
@@ -24,10 +24,9 @@ if (project.status === 'live') {
 ---
 
 <section class="flex flex-col gap-4">
-  <div class="grid grid-cols-[40px_minmax(0,1fr)_auto] sm:grid-cols-[48px_minmax(0,1fr)_minmax(0,1fr)_96px] gap-4">
+  <div class="grid grid-cols-[40px_minmax(0,1fr)_auto] sm:grid-cols-[48px_minmax(0,1fr)_96px] gap-4">
     <span class="text-muted">{number}</span>
     <a href={pageHref} class="font-medium hover:text-felt hover:underline">{project.title}</a>
-    <span class="text-muted hidden sm:block">{project.summary}</span>
 
     <!-- A live project's status links to its demo -->
     {project.link ? (

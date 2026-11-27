@@ -45,23 +45,12 @@ if (project.status === 'live') {
 
   <p class="text-base md:text-lg leading-normal max-w-[720px]">{project.description}</p>
 
-  <!-- Facts in ledger rows -->
-  <dl class="flex flex-col border-t border-rule max-w-[720px]">
-    <div class="grid grid-cols-[120px_minmax(0,1fr)] gap-4 py-3 border-b border-rule">
-      <dt class="text-muted">tags</dt>
-      <dd>{project.tags.join(', ').toLowerCase()}</dd>
-    </div>
-    {project.link && (
-      <div class="grid grid-cols-[120px_minmax(0,1fr)] gap-4 py-3 border-b border-rule">
-        <dt class="text-muted">demo</dt>
-        <dd>
-          <a href={project.link} target="_blank" rel="noopener noreferrer" class="text-felt hover:underline">
-            open live demo ↗
-          </a>
-        </dd>
-      </div>
-    )}
-  </dl>
+  <!-- Link to the live demo, if there is one -->
+  {project.link && (
+    <a href={project.link} target="_blank" rel="noopener noreferrer" class="self-start text-felt hover:underline">
+      open live demo ↗
+    </a>
+  )}
 
   <img
     src={project.image}
