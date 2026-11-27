@@ -41,7 +41,7 @@ if (project.status === 'live') {
   {showImage && (
     <a href={pageHref} class="block">
       <img
-        src={project.image}
+        src={project.images[0].src}
         alt={`${project.title} screenshot`}
         loading="lazy"
         class={`w-full h-auto border ${imageBorderClass}`}

@@ -45,16 +45,25 @@ if (project.status === 'live') {
 
   <p class="text-base md:text-lg leading-normal max-w-[720px]">{project.description}</p>
 
+  <!-- Every screenshot, each with its caption below -->
+  {project.images.map((image) => (
+    <figure class="flex flex-col gap-2">
+      <img
+        src={image.src}
+        alt={image.caption ?? `${project.title} screenshot`}
+        loading="lazy"
+        class={`w-full h-auto border ${imageBorderClass}`}
+      />
+      {image.caption && (
+        <figcaption class="text-muted text-xs">{image.caption}</figcaption>
+      )}
+    </figure>
+  ))}
+
   <!-- Link to the live demo, if there is one -->
   {project.link && (
     <a href={project.link} target="_blank" rel="noopener noreferrer" class="self-start text-felt hover:underline">
       open live demo ↗
     </a>
   )}
-
-  <img
-    src={project.image}
-    alt={`${project.title} screenshot`}
-    class={`w-full h-auto border ${imageBorderClass}`}
-  />
 </BaseLayout>

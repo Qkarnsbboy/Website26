@@ -4,11 +4,17 @@
 
 export type ProjectStatus = 'live' | 'wip' | 'planned';
 
+// One screenshot on a project page, with an optional line of text below it.
+export interface Screenshot {
+  src: string;
+  caption?: string;
+}
+
 export interface Project {
   slug: string; // used in the page address: /projects/<slug>
   title: string;
   description: string;
-  image: string;
+  images: Screenshot[]; // the first one also shows on the home page
   status: ProjectStatus;
   link: string | null; // live demo, if there is one
 }
@@ -19,7 +25,20 @@ export const projects: Project[] = [
     title: 'Poker Hand Analyzer',
     description:
       'Reviews a poker hand and shows where your play differed from the mathematically optimal line, and when going against it would have actually made you more money.',
-    image: '/assets/Poker_Analyzer_App.png',
+    images: [
+      {
+        src: '/assets/Poker_Analyzer_App.png',
+        caption: 'Analyze — replay a hand street by street and get a recommended action, with the theory behind it.',
+      },
+      {
+        src: '/assets/Poker_Analyzer_NewHand.png',
+        caption: 'New Hand — enter the stakes, stacks, cards and action for a hand you played.',
+      },
+      {
+        src: '/assets/Poker_Analyzer_SavedHands.png',
+        caption: 'Saved Hands — search, filter and reopen every hand you have saved.',
+      },
+    ],
     status: 'live',
     link: 'https://pokerhandanalyzer.app/',
   },
@@ -28,7 +47,7 @@ export const projects: Project[] = [
     title: 'Strategy Visualizer',
     description:
       'An options payoff terminal. Build a strategy from calls and puts, then see its payoff at expiry, break-even point, and Greeks.',
-    image: '/assets/Strategy_Visualizer.jpg',
+    images: [{ src: '/assets/Strategy_Visualizer.jpg' }],
     status: 'live',
     link: 'https://strategy-visualizer-hazel.vercel.app/',
   },
@@ -37,7 +56,7 @@ export const projects: Project[] = [
     title: 'Gamertag Lookup',
     description:
       "Look up a player once and get their stats from every game they play, pulled together from each platform's separate database.",
-    image: '/assets/GamerTag_Lookup.jpeg',
+    images: [{ src: '/assets/GamerTag_Lookup.jpeg' }],
     status: 'planned',
     link: null,
   },
@@ -46,7 +65,7 @@ export const projects: Project[] = [
     title: 'Steam Options Pricer',
     description:
       'Takes historical prices for Counter-Strike skins and builds options chains on top of them, treating the skin market like a tradable asset.',
-    image: '/assets/SteamSkin.webp',
+    images: [{ src: '/assets/SteamSkin.webp' }],
     status: 'planned',
     link: null,
   },
