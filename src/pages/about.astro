@@ -1,6 +1,6 @@
 ---
 // about.astro
-// The about page: photo, short story, and the outside links
+// The about page: short story and the outside links
 // (LinkedIn, GitHub, resume).
 import BaseLayout from '../layouts/BaseLayout.astro';
 import { projects } from '../data/projects';
@@ -25,9 +25,8 @@ const links = [
 
   <div class="border-t border-rule-strong"></div>
 
-  <!-- Story on the left, photo on the right (stacked on a phone) -->
-  <div class="flex flex-col lg:flex-row gap-10">
-    <div class="flex-1 flex flex-col gap-4 text-base leading-relaxed max-w-[640px]">
+  <!-- Story -->
+  <div class="flex flex-col gap-4 text-base leading-relaxed max-w-[640px]">
       <p>
         I graduated from USC's Viterbi School of Engineering with a B.S. in Computer Science
         and Business Administration. I chose a dual degree because I like both building things
@@ -47,13 +46,6 @@ const links = [
         In my free time I play poker, soccer, and video games, and I build personal projects that
         combine technology and business.
       </p>
-    </div>
-
-    <div class="lg:w-64 flex-shrink-0">
-      <span class="block w-full aspect-square overflow-hidden grayscale border border-rule">
-        <img src="/assets/QK_Headshot2.jpg" alt="Quincy Karns" class="w-full h-full object-cover scale-[1.8]" />
-      </span>
-    </div>
   </div>
 
   <!-- Outside links -->
