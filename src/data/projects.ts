@@ -4,10 +4,10 @@
 
 export type ProjectStatus = 'live' | 'wip' | 'planned';
 
-// One screenshot on a project page, with an optional line of text below it.
+// One screenshot on a project page, with an optional small title above it.
 export interface Screenshot {
   src: string;
-  caption?: string;
+  title?: string;
 }
 
 export interface Project {
@@ -28,15 +28,15 @@ export const projects: Project[] = [
     images: [
       {
         src: '/assets/Poker_Analyzer_App.png',
-        caption: 'Analyze — replay a hand street by street and get a recommended action, with the theory behind it.',
+        title: 'Analyze',
       },
       {
         src: '/assets/Poker_Analyzer_NewHand.png',
-        caption: 'New Hand — enter the stakes, stacks, cards and action for a hand you played.',
+        title: 'New Hand',
       },
       {
         src: '/assets/Poker_Analyzer_SavedHands.png',
-        caption: 'Saved Hands — search, filter and reopen every hand you have saved.',
+        title: 'Saved Hands',
       },
     ],
     status: 'live',
