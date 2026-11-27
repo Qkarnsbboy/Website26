@@ -46,8 +46,8 @@ export const projects: Project[] = [
     slug: 'strategy-visualizer',
     title: 'Strategy Visualizer',
     description:
-      'An options payoff terminal. Build a strategy from calls and puts, then see its payoff at expiry, break-even point, and Greeks.',
-    images: [{ src: '/assets/Strategy_Visualizer.jpg' }],
+      'Plot the payoff of an option or spread, while also viewing its break-even point and Greeks.',
+    images: [{ src: '/assets/Strategy_Visualizer_App.png' }],
     status: 'live',
     link: 'https://strategy-visualizer-hazel.vercel.app/',
   },
