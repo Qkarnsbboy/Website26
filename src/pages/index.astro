@@ -1,26 +1,44 @@
 ---
+// index.astro
+// Home page: a short bio, then every project as a ledger row.
+// Live and in-progress projects show a large screenshot.
+// Planned projects are text rows only.
 import BaseLayout from '../layouts/BaseLayout.astro';
-import Navbar from '../components/Navbar.astro';
-import Hero from '../components/Hero.astro';
-import About from '../components/About.astro';
-import Experience from '../components/Experience.astro';
-import Projects from '../components/Projects.astro';
-import Poker from '../components/Poker.astro';
-import Skills from '../components/Skills.astro';
-import Contact from '../components/Contact.astro';
-import Footer from '../components/Footer.astro';
+import ProjectRow from '../components/ProjectRow.astro';
+import { projects } from '../data/projects';
+
+// Split the projects into the ones with images and the planned ones.
+// Keep each project's number from its place in the full list.
+const featured = [];
+const planned = [];
+for (let i = 0; i < projects.length; i++) {
+  const entry = { project: projects[i], number: String(i + 1).padStart(2, '0') };
+  if (projects[i].status === 'planned') {
+    planned.push(entry);
+  } else {
+    featured.push(entry);
+  }
+}
 ---
 
 <BaseLayout>
-  <Navbar />
-  <main>
-    <Hero />
-    <About />
-    <Experience />
-    <Projects />
-    <Poker />
-    <Skills />
-    <Contact />
-  </main>
-  <Footer />
+  <p class="text-lg md:text-xl leading-normal max-w-[720px]">
+    Tech strategy consultant at <b>Strategy&amp;, PwC</b>. Previously software engineer at
+    <b>Microsoft</b>. <span class="text-muted">USC, CS + Business. Based in New York.</span>
+  </p>
+
+  <div class="border-t border-rule-strong"></div>
+
+  {featured.map((entry) => (
+    <ProjectRow project={entry.project} number={entry.number} showImage />
+  ))}
+
+  <!-- Planned projects: a compact list with thin lines -->
+  <div class="flex flex-col border-t border-rule-strong">
+    {planned.map((entry) => (
+      <div class="py-3 border-b border-rule">
+        <ProjectRow project={entry.project} number={entry.number} />
+      </div>
+    ))}
+  </div>
 </BaseLayout>

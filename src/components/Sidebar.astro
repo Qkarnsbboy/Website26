@@ -1,0 +1,85 @@
+---
+// Sidebar.astro
+// The left menu. It is the same on every page.
+import { projects } from '../data/projects';
+import { companies } from '../data/experience';
+
+// One menu entry: the text to show and the page it opens.
+interface NavItem {
+  label: string;
+  href: string;
+}
+
+// Build the three menu groups from the data files.
+const projectItems: NavItem[] = [];
+for (const project of projects) {
+  projectItems.push({ label: project.title, href: `/projects/${project.slug}` });
+}
+
+const experienceItems: NavItem[] = [];
+for (const company of companies) {
+  experienceItems.push({ label: company.name, href: `/experience/${company.slug}` });
+}
+
+const otherItems: NavItem[] = [
+  { label: 'Poker', href: '/poker' },
+  { label: 'About', href: '/about' },
+];
+
+// Give every entry a running number: 01, 02, 03 ...
+const allItems = [...projectItems, ...experienceItems, ...otherItems];
+const numbers = new Map<string, string>();
+for (let i = 0; i < allItems.length; i++) {
+  numbers.set(allItems[i].href, String(i + 1).padStart(2, '0'));
+}
+
+// The page the visitor is on now, without a trailing slash.
+const currentPath = Astro.url.pathname.replace(/\/$/, '');
+
+// Pick the link style. The current page shows in green.
+function linkClass(href: string): string {
+  if (href === currentPath) {
+    return 'text-felt';
+  }
+  return 'hover:text-felt hover:underline';
+}
+---
+
+<nav aria-label="Site" class="flex flex-col gap-9 md:w-64 md:flex-shrink-0 md:sticky md:top-14 md:self-start">
+  <!-- Photo and name: always links home -->
+  <a href="/" class="flex items-center gap-3.5 hover:text-felt">
+    <span class="block w-12 h-12 overflow-hidden flex-shrink-0 grayscale">
+      <img src="/assets/QK_Headshot2.jpg" alt="Quincy Karns" class="w-full h-full object-cover scale-[1.8]" />
+    </span>
+    <span class="font-bold text-[15px]">Quincy Karns</span>
+  </a>
+
+  <!-- Projects -->
+  <div class="flex flex-col gap-1">
+    <span class="text-muted"><span class="text-felt">//</span> projects</span>
+    {projectItems.map((item) => (
+      <a href={item.href} class={linkClass(item.href)}>
+        {numbers.get(item.href)}&nbsp;&nbsp;{item.label}
+      </a>
+    ))}
+  </div>
+
+  <!-- Experience -->
+  <div class="flex flex-col gap-1">
+    <span class="text-muted"><span class="text-felt">//</span> experience</span>
+    {experienceItems.map((item) => (
+      <a href={item.href} class={linkClass(item.href)}>
+        {numbers.get(item.href)}&nbsp;&nbsp;{item.label}
+      </a>
+    ))}
+  </div>
+
+  <!-- Poker and About -->
+  <div class="flex flex-col gap-1">
+    {otherItems.map((item) => (
+      <a href={item.href} class={linkClass(item.href)}>
+        {numbers.get(item.href)}&nbsp;&nbsp;{item.label}
+      </a>
+    ))}
+  </div>
+</nav>

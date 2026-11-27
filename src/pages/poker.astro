@@ -1,0 +1,99 @@
+---
+// poker.astro
+// The poker page: story, photo, stats, skills and links.
+import BaseLayout from '../layouts/BaseLayout.astro';
+import { projects } from '../data/projects';
+import { companies } from '../data/experience';
+
+// Poker comes right after the projects and the companies in the menu.
+const number = String(projects.length + companies.length + 1).padStart(2, '0');
+
+// Lifetime results, shown as ledger rows.
+const stats = [
+  { label: 'lifetime profit', value: '$35,000+' },
+  { label: 'hourly', value: '$75/hr' },
+  { label: 'roi', value: '40%' },
+  { label: 'sharpe ratio', value: '0.38' },
+  { label: 'bb/100', value: '72' },
+];
+
+// What poker teaches that carries over to work.
+const skills = [
+  'risk management',
+  'expected value',
+  'probabilistic thinking',
+  'decision-making under uncertainty',
+  'emotional discipline',
+  'bankroll management',
+  'pattern recognition',
+  'game selection',
+];
+
+// Outside links about my poker.
+const links = [
+  { label: 'live tournament results — the hendon mob', href: 'https://pokerdb.thehendonmob.com/player.php?a=r&n=1270221' },
+  { label: 'instagram — @qballplayspoker', href: 'https://www.instagram.com/qballplayspoker' },
+];
+---
+
+<BaseLayout title="Poker — Quincy Karns">
+  <div class="flex flex-col gap-3">
+    <span class="text-muted">{number} <span class="text-felt">//</span> poker</span>
+    <h1 class="text-2xl md:text-3xl font-bold">Poker</h1>
+  </div>
+
+  <div class="border-t border-rule-strong"></div>
+
+  <!-- Story on the left, photo on the right (stacked on a phone) -->
+  <div class="flex flex-col lg:flex-row gap-10">
+    <div class="flex-1 flex flex-col gap-4 text-base leading-relaxed max-w-[640px]">
+      <p>
+        Poker is my favorite hobby. From my first time playing with my friends in their college dorm room,
+        to taking on thousands of professionals at the World Series of Poker in Las Vegas, I have never lost my love for the game.
+      </p>
+      <p>
+        Poker combines complex logical and mathematical reasoning with a deep understanding of human psychology and emotion.
+        These skills help me in my everyday and professional life by allowing me to make better decisions with incomplete information.
+      </p>
+      <p>
+        You can find me grinding at the local $1/$3 and $2/$5 tables at casinos and home games around NYC. Occasionally, I take shots
+        at tournament series like the World Series of Poker (WSOP) and World Poker Tour (WPT).
+      </p>
+    </div>
+
+    <figure class="lg:w-80 flex-shrink-0 flex flex-col gap-2">
+      <img src="/assets/PokerPic1.jpeg" alt="Quincy at a WSOP table in Las Vegas" class="w-full object-cover border border-rule" />
+      <figcaption class="text-muted text-xs">WSOP Event #67: $300 Gladiators of Poker — Day 1 · Las Vegas, NV</figcaption>
+    </figure>
+  </div>
+
+  <!-- Stats -->
+  <section class="flex flex-col gap-3 max-w-[640px]">
+    <span class="text-muted"><span class="text-felt">//</span> stats</span>
+    <dl class="flex flex-col border-t border-rule-strong">
+      {stats.map((stat) => (
+        <div class="grid grid-cols-[minmax(0,1fr)_auto] gap-4 py-3 border-b border-rule">
+          <dt class="text-muted">{stat.label}</dt>
+          <dd class="font-medium">{stat.value}</dd>
+        </div>
+      ))}
+    </dl>
+  </section>
+
+  <!-- Transferable skills, as one plain line -->
+  <section class="flex flex-col gap-3 max-w-[640px]">
+    <span class="text-muted"><span class="text-felt">//</span> what carries over</span>
+    <p>{skills.join(', ')}</p>
+  </section>
+
+  <!-- Related project and outside links -->
+  <section class="flex flex-col gap-1">
+    <span class="text-muted mb-2"><span class="text-felt">//</span> more</span>
+    <a href="/projects/poker-hand-analyzer" class="hover:text-felt hover:underline">→ poker hand analyzer (project)</a>
+    {links.map((link) => (
+      <a href={link.href} target="_blank" rel="noopener noreferrer" class="hover:text-felt hover:underline">
+        {link.label} ↗
+      </a>
+    ))}
+  </section>
+</BaseLayout>
