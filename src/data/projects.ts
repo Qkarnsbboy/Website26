@@ -15,6 +15,15 @@ export interface Project {
 
 export const projects: Project[] = [
   {
+    slug: 'poker-hand-analyzer',
+    title: 'Poker Hand Analyzer',
+    description:
+      'Reviews a poker hand and shows where your play differed from the mathematically optimal line, and when going against it would have actually made you more money.',
+    image: '/assets/Poker_Analyzer_App.png',
+    status: 'live',
+    link: 'https://pokerhandanalyzer.app/',
+  },
+  {
     slug: 'strategy-visualizer',
     title: 'Strategy Visualizer',
     description:
@@ -22,15 +31,6 @@ export const projects: Project[] = [
     image: '/assets/Strategy_Visualizer.jpg',
     status: 'live',
     link: 'https://strategy-visualizer-hazel.vercel.app/',
-  },
-  {
-    slug: 'poker-hand-analyzer',
-    title: 'Poker Hand Analyzer',
-    description:
-      'Reviews a poker hand and shows where your play differed from the mathematically optimal line, and when going against it would have actually made you more money.',
-    image: '/assets/Poker_Analyzer.jpg',
-    status: 'wip',
-    link: null,
   },
   {
     slug: 'gamertag-lookup',
