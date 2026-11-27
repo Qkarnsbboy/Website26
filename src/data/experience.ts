@@ -18,7 +18,7 @@ export interface Company {
 export const companies: Company[] = [
   {
     slug: 'strategy-and',
-    name: 'Strategy&, PwC',
+    name: 'Strategy&',
     roles: [
       {
         title: 'Associate, Technology Strategy (Deals)',
