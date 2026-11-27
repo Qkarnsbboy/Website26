@@ -24,7 +24,7 @@ export const projects: Project[] = [
     slug: 'poker-hand-analyzer',
     title: 'Poker Hand Analyzer',
     description:
-      'Reviews a poker hand and shows where your play differed from the mathematically optimal line, and when going against it would have actually made you more money.',
+      'Input a poker hand and receive recommendations based on both theory and exploitative concerns.',
     images: [
       {
         src: '/assets/Poker_Analyzer_App.png',
