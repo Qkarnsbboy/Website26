@@ -81,14 +81,13 @@ const links = [
 
   <!-- Transferable skills, as one plain line -->
   <section class="flex flex-col gap-3 max-w-[640px]">
-    <span class="text-muted"><span class="text-felt">//</span> what carries over</span>
+    <span class="text-muted"><span class="text-felt">//</span> skills</span>
     <p>{skills.join(', ')}</p>
   </section>
 
-  <!-- Related project and outside links -->
+  <!-- Outside links -->
   <section class="flex flex-col gap-1">
-    <span class="text-muted mb-2"><span class="text-felt">//</span> more</span>
-    <a href="/projects/poker-hand-analyzer" class="hover:text-felt hover:underline">→ poker hand analyzer (project)</a>
+    <span class="text-muted mb-2"><span class="text-felt">//</span> links</span>
     {links.map((link) => (
       <a href={link.href} target="_blank" rel="noopener noreferrer" class="hover:text-felt hover:underline">
         {link.label} ↗
