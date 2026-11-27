@@ -22,12 +22,17 @@ for (let i = 0; i < projects.length; i++) {
 ---
 
 <BaseLayout>
-  <p class="text-lg md:text-xl leading-normal max-w-[720px]">
-    Tech strategy consultant at <b>Strategy&amp;, PwC</b>. Previously software engineer at
-    <b>Microsoft</b>. <span class="text-muted">USC, CS + Business. Based in New York.</span>
-  </p>
+  <!-- Short bio: one fact per line -->
+  <div class="flex flex-col text-lg md:text-xl leading-normal max-w-[720px]">
+    <p>Currently tech strategy at <b>Strategy&amp;</b>.</p>
+    <p>Previously software engineer at <b>Microsoft</b>.</p>
+    <p class="text-muted">Studied CS + Business at USC.</p>
+    <p class="text-muted">Based in New York.</p>
+  </div>
 
   <div class="border-t border-rule-strong"></div>
+
+  <span class="text-muted -mb-6"><span class="text-felt">//</span> projects</span>
 
   {featured.map((entry) => (
     <ProjectRow project={entry.project} number={entry.number} showImage />
