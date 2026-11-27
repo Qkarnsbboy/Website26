@@ -1,16 +1,17 @@
 ---
 // ProjectRow.astro
-// One ledger row for a project: name, short tags, status.
+// One ledger row for a project: number, name, short tags, status.
 // With showImage, the project screenshot appears below the row.
 import type { Project } from '../data/projects';
 import { statusLabels } from '../data/projects';
 
 interface Props {
   project: Project;
+  number: string;
   showImage?: boolean;
 }
 
-const { project, showImage = false } = Astro.props;
+const { project, number, showImage = false } = Astro.props;
 const pageHref = `/projects/${project.slug}`;
 
 // A live project shows its status and its image border in green.
@@ -23,7 +24,8 @@ if (project.status === 'live') {
 ---
 
 <section class="flex flex-col gap-4">
-  <div class="grid grid-cols-[minmax(0,1fr)_auto] sm:grid-cols-[minmax(0,1fr)_minmax(0,1fr)_96px] gap-4">
+  <div class="grid grid-cols-[40px_minmax(0,1fr)_auto] sm:grid-cols-[48px_minmax(0,1fr)_minmax(0,1fr)_96px] gap-4">
+    <span class="text-muted">{number}</span>
     <a href={pageHref} class="font-medium hover:text-felt hover:underline">{project.title}</a>
     <span class="text-muted hidden sm:block">{project.summary}</span>
 
