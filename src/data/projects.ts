@@ -52,20 +52,20 @@ export const projects: Project[] = [
     link: 'https://strategy-visualizer-hazel.vercel.app/',
   },
   {
+    slug: 'skinstreet',
+    title: 'SkinStreet',
+    description:
+      'Takes historical prices for Counter-Strike skins and builds options chains on top of them, treating the skin market like a tradable asset.',
+    images: [{ src: '/assets/SteamSkin.webp' }],
+    status: 'wip',
+    link: null,
+  },
+  {
     slug: 'gamertag-lookup',
     title: 'Gamertag Lookup',
     description:
       "Look up a player once and get their stats from every game they play, pulled together from each platform's separate database.",
     images: [{ src: '/assets/GamerTag_Lookup.jpeg' }],
-    status: 'planned',
-    link: null,
-  },
-  {
-    slug: 'steam-options-pricer',
-    title: 'Steam Options Pricer',
-    description:
-      'Takes historical prices for Counter-Strike skins and builds options chains on top of them, treating the skin market like a tradable asset.',
-    images: [{ src: '/assets/SteamSkin.webp' }],
     status: 'planned',
     link: null,
   },
